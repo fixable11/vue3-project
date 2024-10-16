@@ -3,7 +3,7 @@ import CreatePost from '../components/post/CreatePost.vue'
 </script>
 
 <template>
-  <div class="create-post">
+  <div class="about">
     <CreatePost />
   </div>
 </template>
