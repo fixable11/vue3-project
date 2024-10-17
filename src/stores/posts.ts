@@ -9,6 +9,12 @@ export const usePostsStore = defineStore('posts', {
     posts: []
   }),
 
+  getters: {
+    getPosts(state) {
+      return state.posts
+    }
+  },
+
   actions: {
     async fetchPosts() {
       try {

@@ -2,25 +2,24 @@
 import { ref, onMounted } from 'vue'
 import { usePostsStore } from '@/stores/posts'
 
+const posts = ref([])
 const postsStore = usePostsStore()
 
 onMounted(async () => {
   await postsStore.fetchPosts()
+  posts.value = postsStore.getPosts
 })
 </script>
 
 <template>
-  <div class="create-post">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div class="col">
+  <div class="view-posts">
+    <div class="row row-cols-3 g-4">
+      <div class="col" v-for="post in posts">
         <div class="card">
           <img src="https://placehold.co/600x400" class="card-img-top" alt="..." />
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              This is a longer card with supporting text below as a natural lead-in to additional
-              content. This content is a little bit longer.
-            </p>
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text">{{ post.body }}</p>
           </div>
         </div>
       </div>
@@ -28,4 +27,10 @@ onMounted(async () => {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss">
+.view-posts {
+  .card {
+    height: 100%;
+  }
+}
+</style>

@@ -7,3 +7,9 @@ import ViewPosts from '../components/post/ViewPosts.vue'
     <ViewPosts />
   </main>
 </template>
+
+<style lang="scss">
+main {
+  padding: 50px 0;
+}
+</style>
