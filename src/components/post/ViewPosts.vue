@@ -21,6 +21,12 @@ onMounted(async () => {
             <h5 class="card-title">{{ post.title }}</h5>
             <p class="card-text">{{ post.body }}</p>
           </div>
+          <div class="d-flex view-post-btn-wrap">
+            <span><b>ID:</b> {{ post.id }}</span>
+            <button type="button" class="btn btn-primary btn-sm view-post-btn">
+              <i class="bi-eye-fill"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -31,6 +37,12 @@ onMounted(async () => {
 .view-posts {
   .card {
     height: 100%;
+  }
+  .view-post-btn {
+    margin-left: auto;
+  }
+  .view-post-btn-wrap {
+    padding: 16px 16px;
   }
 }
 </style>

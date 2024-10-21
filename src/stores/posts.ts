@@ -23,6 +23,14 @@ export const usePostsStore = defineStore('posts', {
       } catch (error) {
         console.log('err', error)
       }
+    },
+    async createPost(formData = {}) {
+      try {
+        const { data } = await axios.post(POSTS_URL, formData)
+        this.posts.push(data)
+      } catch (error) {
+        console.log('err', error)
+      }
     }
   }
 })

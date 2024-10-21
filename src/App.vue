@@ -7,7 +7,7 @@ import HelloWorld from './components/HelloWorld.vue'
   <header class="d-none">
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
-    <div class="wrapper ">
+    <div class="wrapper">
       <HelloWorld msg="You did it!" />
 
       <nav>
@@ -21,6 +21,11 @@ import HelloWorld from './components/HelloWorld.vue'
   <RouterView />
 </template>
 
+<style lang="scss">
+#app {
+  width: 100%;
+}
+</style>
 <style scoped>
 header {
   line-height: 1.5;

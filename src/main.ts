@@ -1,6 +1,6 @@
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.css'
-import './assets/main.css'
+import './assets/main.scss'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
