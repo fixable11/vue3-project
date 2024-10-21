@@ -6,28 +6,50 @@ const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts'
 
 export const usePostsStore = defineStore('posts', {
   state: () => ({
-    posts: []
+    posts: new Map()
   }),
 
   getters: {
     getPosts(state) {
-      return state.posts
+      return Array.from(Object.values(Object.fromEntries(state.posts)))
     }
   },
 
   actions: {
     async fetchPosts() {
       try {
-        const { data } = await axios.get(POSTS_URL)
-        this.posts = data
+        const { data: posts } = await axios.get(POSTS_URL)
+        for (const post of posts) {
+          this.posts.set(post.id, Object.assign(post, this.posts.get(post.id) ?? {}))
+        }
+      } catch (error) {
+        console.log('err', error)
+      }
+    },
+    async fetchPost(postId: number) {
+      try {
+        if (this.posts.has(+postId)) {
+          return this.posts.get(+postId)
+        }
+
+        const { data } = await axios.get(`${POSTS_URL}/${postId}`)
+        return data
       } catch (error) {
         console.log('err', error)
       }
     },
     async createPost(formData = {}) {
       try {
-        const { data } = await axios.post(POSTS_URL, formData)
-        this.posts.push(data)
+        const { data: post } = await axios.post(POSTS_URL, formData)
+        this.posts.set(post.id, post)
+      } catch (error) {
+        console.log('err', error)
+      }
+    },
+    async updatePost(postId: number, formData = {}) {
+      try {
+        const { data: post } = await axios.put(`${POSTS_URL}/${postId}`, formData)
+        this.posts.set(post.id, post)
       } catch (error) {
         console.log('err', error)
       }

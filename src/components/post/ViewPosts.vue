@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { usePostsStore } from '@/stores/posts'
+import { useRouter } from 'vue-router'
 
 const posts = ref([])
 const postsStore = usePostsStore()
+const router = useRouter()
+
+async function viewPost(post) {
+  await router.push({ name: 'edit-post', params: { postId: post.id } })
+}
 
 onMounted(async () => {
   await postsStore.fetchPosts()
@@ -23,7 +29,11 @@ onMounted(async () => {
           </div>
           <div class="d-flex view-post-btn-wrap">
             <span><b>ID:</b> {{ post.id }}</span>
-            <button type="button" class="btn btn-primary btn-sm view-post-btn">
+            <button
+              @click.prevent="viewPost(post)"
+              type="button"
+              class="btn btn-primary btn-sm view-post-btn"
+            >
               <i class="bi-eye-fill"></i>
             </button>
           </div>

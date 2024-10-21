@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import CreatePost from '../components/post/CreatePost.vue'
+import EditPost from '../components/post/EditPost.vue'
 </script>
 
 <template>
-  <div class="about">
-    <CreatePost />
+  <div class="edit-post-view">
+    <EditPost />
   </div>
 </template>
-
 
 <style>
 @media (min-width: 1024px) {
