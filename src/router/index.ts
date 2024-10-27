@@ -15,9 +15,14 @@ const router = createRouter({
       component: () => import('../views/CreatePostView.vue')
     },
     {
-      path: '/posts/:postId',
+      path: '/posts/:postId/edit',
       name: 'edit-post',
       component: () => import('../views/EditPostView.vue')
+    },
+    {
+      path: '/posts/:postId',
+      name: 'view-post',
+      component: () => import('../views/PostView.vue')
     }
   ]
 })
