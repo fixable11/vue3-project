@@ -1,4 +1,4 @@
-import { inject } from 'vue'
+import { inject, reactive } from 'vue'
 import { defineStore } from 'pinia'
 import axios from 'axios'
 
@@ -6,12 +6,12 @@ const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts'
 
 export const usePostsStore = defineStore('posts', {
   state: () => ({
-    posts: new Map()
+    posts: reactive(new Map())
   }),
 
   getters: {
     getPosts(state) {
-      return Array.from(Object.values(Object.fromEntries(state.posts)))
+      return Array.from(state.posts.values())
     }
   },
 
@@ -50,6 +50,14 @@ export const usePostsStore = defineStore('posts', {
       try {
         const { data: post } = await axios.put(`${POSTS_URL}/${postId}`, formData)
         this.posts.set(post.id, post)
+      } catch (error) {
+        console.log('err', error)
+      }
+    },
+    async deletePost(postId: number) {
+      try {
+        await axios.delete(`${POSTS_URL}/${postId}`)
+        this.posts.delete(postId)
       } catch (error) {
         console.log('err', error)
       }
