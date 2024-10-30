@@ -71,6 +71,13 @@ onMounted(async () => {
       </div>
     </div>
     <div class="view-posts">
+      <button
+        @click.prevent="router.push({ name: 'create-post' })"
+        type="button"
+        class="btn btn-primary mb-3 create-post-btn"
+      >
+        Create post
+      </button>
       <div class="row row-cols-3 g-4">
         <div class="col" :key="post.id" v-for="post in postsStore.getPosts">
           <div class="card">
