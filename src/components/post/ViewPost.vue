@@ -56,7 +56,7 @@ onMounted(async () => {
       </div>
     </div>
   </div>
-  <div class="edit-post">
+  <div class="view-post-wrap">
     <h1 class="h1 title">View post #{{ route.params.postId }}</h1>
 
     <div class="row">
