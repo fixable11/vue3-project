@@ -49,7 +49,10 @@ onMounted(async () => {
             rows="3"
           ></textarea>
         </div>
-        <button type="submit" class="btn btn-success mt-3">Save</button>
+        <button @click="router.push({ name: 'posts' })" class="btn btn-secondary mt-3">
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-success mt-3 ms-2">Save</button>
       </form>
     </div>
   </div>
